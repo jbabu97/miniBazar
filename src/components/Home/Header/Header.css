@@ -1,0 +1,17 @@
+.header_container {
+    background-image: url('../../../photos/top_banner_2.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+    height: 500px;
+}
+.header_content {
+    height: 400px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+.header_content h1 {
+    font-size: 3rem;
+    margin-bottom: 50px;
+}

@@ -1,0 +1,8 @@
+.service_detail img {
+    width: 300px;
+    border-radius: 50%;
+    transition: .4s;
+}
+.service_detail img:hover {
+    transform: scale(1.15);
+}

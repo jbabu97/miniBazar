@@ -1,0 +1,11 @@
+.about_content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.about_content_left {
+    height: 100%;
+    padding: 40px;
+    background-color: antiquewhite;
+    text-align: center;
+}

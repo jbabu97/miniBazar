@@ -1,0 +1,15 @@
+.review_section {
+    height: 600px;
+}
+.review_img {
+    background-image: url('../../../photos/review.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
+}
+.review_content {
+    background-color: lightblue;
+}
+.sliderImg img{
+    width: 100px;
+}

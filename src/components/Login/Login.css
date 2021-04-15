@@ -1,0 +1,9 @@
+.login_form {
+    width: 40%;
+    border: 1px dashed gray;
+    margin: 100px auto;
+    padding: 40px;
+}
+.google_icon {
+    width: 20px;
+}
