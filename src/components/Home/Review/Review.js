@@ -1,12 +1,24 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './Review.css';
 import ReviewImg from '../../../photos/review.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 import "react-responsive-carousel/lib/styles/carousel.min.css"; // requires a loader
 import { Carousel } from 'react-responsive-carousel';
+import ReviewMessage from '../ReviewMessage/ReviewMessage';
 
 const Review = () => {
+    const [reviews, setReviews] = useState([]);
+
+    useEffect(() => { 
+        fetch(`http://localhost:4747/reviews`)
+        .then(res => res.json())
+        .then(data => {
+            setReviews(data);
+            console.log(data);
+    });
+    // setSpinner(true)
+    }, []);
     return (
         <section className='row mt-5 review_section'>
             <div className="col-md-6 review_img">
@@ -20,27 +32,9 @@ const Review = () => {
                     <div>
                         <FontAwesomeIcon icon={faQuoteLeft} />
                     </div>
-                    <div id="carouselExampleIndicators" class="carousel slide" data-bs-ride="carousel">
-                        <div class="carousel-indicators">
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="1" aria-label="Slide 2"></button>
-                            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="2" aria-label="Slide 3"></button>
-                        </div>
-                        <div class="carousel-inner">
-                            <div class="carousel-item active">
-                            <img style={{width: '100px'}} src={ReviewImg} alt="..." />
-                            <h5 className='mb-5 mt-3'>Name</h5>
-                            </div>
-                            <div class="carousel-item">
-                            <img style={{width: '100px'}} src={ReviewImg} alt="..." />
-                            <h5 className='mb-5 mt-3'>Name</h5>
-                            </div>
-                            <div class="carousel-item">
-                            <img style={{width: '100px'}} src={ReviewImg} alt="..."/>
-                            <h5 className='mb-5' mt-3>Name</h5>
-                            </div>
-                        </div>
-                    </div>
+                    {
+                        reviews.map(review => <ReviewMessage review={review}></ReviewMessage>)
+                    }
                 </div>
             </div>
         </section>
