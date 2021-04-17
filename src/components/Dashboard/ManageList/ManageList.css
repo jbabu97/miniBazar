@@ -1,0 +1,12 @@
+.manage_list {
+    background: #7f91a1;
+    border-radius: 10px;
+}
+.manage_info {
+    width: 300px;
+}
+.manage_btn img{
+    width: 40px;
+    margin: 10px;
+    cursor: pointer;
+}

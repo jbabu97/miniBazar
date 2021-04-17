@@ -1,0 +1,26 @@
+.footer_section {
+    background-color: #485460;
+}
+.footer_logo img {
+    margin-top: 30px;
+}
+.social {
+    margin: 20px auto;
+}
+.social_icon{
+    margin: 5px;
+    font-size: 2rem;
+    color: #e0c591;
+    transition: .4s;
+}
+.social_icon:hover{
+    transform: scale(1.2);
+    color: #b39f7c;
+}
+.copyright {
+    color: #e0c591;
+    background-color: #1e272e;
+}
+.copyright p {
+    padding: 10px 0;
+}

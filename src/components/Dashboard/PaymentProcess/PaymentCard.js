@@ -1,11 +1,9 @@
-import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { UserContext } from '../../../App';
+import React, { useState } from 'react';
+import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
 
-const PaymentForm = ({handlePayment, bookService}) => {
-    // const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    // const { register, errors } = useForm();
+
+
+const PaymentCard = ({handleBooking}) => {
     const stripe = useStripe();
   const elements = useElements();
 
@@ -17,11 +15,13 @@ const PaymentForm = ({handlePayment, bookService}) => {
     event.preventDefault();
 
     if (!stripe || !elements) {
+      
       return;
     }
 
     const cardElement = elements.getElement(CardElement);
 
+    
     const {error, paymentMethod} = await stripe.createPaymentMethod({
       type: 'card',
       card: cardElement,
@@ -35,26 +35,22 @@ const PaymentForm = ({handlePayment, bookService}) => {
       console.log('[PaymentMethod]', paymentMethod);
       setPaymentSuccess(paymentMethod.id);
       setPaymentError(null);
-      handlePayment(paymentMethod.id);
+      handleBooking(paymentMethod.id);
     }
   };
 
     return (
         <div>
-            <div>
             <form className="border p-5 rounded bg-light mt-5" onSubmit={handleSubmit}>
-          
                 <CardElement />
                 <button className="btn btn-success mt-5" type="submit" disabled={!stripe}>
                     Pay
                 </button>
-                {paymentError && <p style={{color: 'red'}}>{paymentError}</p>}
-                {paymentSuccess && <p style={{color: 'green'}}>Your payment was successful.</p>}
             </form>
-            
-        </div>
+            {paymentError && <p style={{color: 'red'}}>{paymentError}</p>}
+            {paymentSuccess && <p style={{color: 'green'}}>Your payment was successful.</p>}
         </div>
     );
 };
 
-export default PaymentForm;
+export default PaymentCard;

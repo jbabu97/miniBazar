@@ -13,6 +13,17 @@ const ManageService = () => {
             setManageService(data);
         })
       }, []);
+
+      const handleDeleteService = (serviceId) => {
+        console.log("deleted");
+        fetch(`http://localhost:4747/deleteService/${serviceId}`, {
+          method: "DELETE",
+        })
+          .then((res) => res.json())
+          .then((result) => {
+            console.log("deleted clicked", result);
+          });
+      };
     
     return (
         <section className='row'>
@@ -23,7 +34,7 @@ const ManageService = () => {
                 <div>
                     <h2>Manage Services</h2>
                     {
-                        manageService.map(manage => <ManageList key={manage._id} manage={manage}></ManageList>)
+                        manageService.map(manage => <ManageList key={manage._id} manage={manage} handleDelete={handleDeleteService}></ManageList>)
                     }
                         
                 </div>

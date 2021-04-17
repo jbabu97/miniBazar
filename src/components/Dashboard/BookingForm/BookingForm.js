@@ -1,61 +1,66 @@
-import { Elements } from '@stripe/react-stripe-js';
-import { loadStripe } from '@stripe/stripe-js';
-import React, { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { useForm } from "react-hook-form";
 import { UserContext } from '../../../App';
 import PaymentForm from '../PaymentForm/PaymentForm';
 
 
-const stripePromise = loadStripe('pk_test_51Ie1CSLxr8cq9zwUKY7gal5KMSdqkGv5rB2Kjy3CXabfrKoxCjyOeiUAGrLTuXzR9jDFGAWh515DFeER5DIAbWCk00uyc0VXfh');
+
 
 const BookingForm = ({bookService}) => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const { register, handleSubmit, errors } = useForm();
 
-    const handlePayment = data => {
-        data.created = new Date().toLocalDateString(); 
-        console.log(data.service);
-        
-        fetch(`http://localhost:5252/addAppointment`, {
+    const [bookingData, setBookingData] = useState(null);
+
+    const onSubmit = data => {
+       
+        setBookingData(data);
+           
+    };
+
+    const handleBooking = (paymentId) => {
+        const newBooking = {
+            ...loggedInUser,
+            bookingService: bookingData, 
+            paymentId,
+            orderTime: new Date()
+        };
+
+        fetch('http://localhost:4747/addBooking', {
             method: 'POST',
-            headers: { 'Content-Type' : 'application/json'},
-            body: JSON.stringify(data)
+            headers: {'Content-Type' : 'application/json'},
+            body: JSON.stringify(newBooking)
         })
         .then(res => res.json())
         .then(success => {
             if (success) {
-                alert('Thanks for booking an appointment.')
+                alert('Thanks for booking service.')
             }
         })
-                
     }
 
     return (
         <div>
-            <form className="p-5" onSubmit={handleSubmit(handlePayment)}>
-                    {/* <div className="form-group">
+            <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
+                    <div className="form-group">
                         <input type="text"  name="name" ref={register({ required: true })} placeholder="Your Name" value={loggedInUser.name} className="form-control" />
                         {errors.name && <span className="text-danger">This field is required</span>}
 
                     </div>
                     <div className="form-group">
-                        <input type="text" ref={register({ required: true })} name="email" placeholder="Email" value={loggedInUser.email} className="form-control" />
+                        <input type="email" ref={register({ required: true })} name="email" placeholder="Email" value={loggedInUser.email} className="form-control" />
                         {errors.email && <span className="text-danger">This field is required</span>}
                     </div>
                     <div className="form-group">
-                        <input type="text" ref={register({ required: true })} name="serviceName" placeholder="Service Name" value={bookService.serviceName} className="form-control" />
-                        {errors.phone && <span className="text-danger">This field is required</span>}
-                    </div> */}
-
-                    <div>
-                        <Elements stripe={stripePromise}>
-                            <PaymentForm handlePayment={handlePayment} bookService={bookService}></PaymentForm>
-                        </Elements>
+                        <input type="text" ref={register({ required: true })} name="serviceName" placeholder="Service Name" className="form-control" />
+                        {errors.serviceName && <span className="text-danger">This field is required</span>}
                     </div>
-
-                    {/* <div className="form-group text-right">
-                        <button type="submit" className="btn btn-info">Submit</button>
-                    </div> */}
+                    <div className='form-group'>
+                        <textarea name="message" id=""  placeholder="Message" className="form-control" cols="30" rows="5"></textarea>
+                    </div>
+                    <div className="form-group text-right">
+                        <button type="submit" className="btn btn-success">Submit</button>
+                    </div>
                 </form>
         </div>
     );

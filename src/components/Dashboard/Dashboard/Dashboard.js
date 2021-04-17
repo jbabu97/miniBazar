@@ -31,7 +31,7 @@ const Dashboard = () => {
                     <Sidebar></Sidebar>
                 </div>
                 <div className="col-md-9">
-                    <h6>Dashboard</h6>
+                    <h6>Book Service</h6>
                     <BookService></BookService>
                 </div>
             </div>

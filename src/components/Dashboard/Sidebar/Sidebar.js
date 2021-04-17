@@ -4,6 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { Link } from 'react-router-dom';
 import './Sidebar.css';
 import { UserContext } from '../../../App';
+import Logo from '../../../photos/sewing_logo2.png';
 
 const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -22,7 +23,9 @@ const Sidebar = () => {
     
     return (
         <aside>
-            <h2 className='text-white text-center p-3'>Doctors Portal</h2>
+            <div className='text-white text-center p-5'>
+                <Link to='/home'><img src={Logo} alt=""/></Link>
+            </div>
             <ul>
                 <Link to='/dashboard' style={{textDecoration: 'none'}}>
                 <li><FontAwesomeIcon className="aside_icon" icon={faTh} ></FontAwesomeIcon> Book</li>
@@ -32,6 +35,9 @@ const Sidebar = () => {
                     <div>
                         <Link to='/bookingList' style={{textDecoration: 'none'}}>
                             <li><FontAwesomeIcon className="aside_icon" icon={faCalendar} ></FontAwesomeIcon> Booking List</li>
+                        </Link>
+                        <Link to='/orderList' style={{textDecoration: 'none'}}>
+                            <li><FontAwesomeIcon className="aside_icon" icon={faCalendar} ></FontAwesomeIcon> Order List</li>
                         </Link>
                         <Link to='/addAdmin' style={{textDecoration: 'none'}}>
                             <li><FontAwesomeIcon className="aside_icon" icon={faUsers} ></FontAwesomeIcon> Make Admin</li>

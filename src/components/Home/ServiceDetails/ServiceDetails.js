@@ -1,8 +1,10 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import BookingPreview from '../../Dashboard/BookingPreview/BookingPreview';
 import './ServiceDetails.css';
 
 const ServiceDetails = ({serve}) => {
+    
     return (
         <div className='col-md-4'>
             <div className='service_detail border p-4'>
@@ -12,6 +14,7 @@ const ServiceDetails = ({serve}) => {
                 <div className='d-flex'>
                     <h5>{serve.newService.serviceCharge}</h5>
                     <Link to={`/bookService/${serve._id}`} className='ml-auto'><button className='btn btn-success'>Book Service</button></Link>
+                    {/* <BookingPreview></BookingPreview> */}
                 </div>
             </div>
         </div>
