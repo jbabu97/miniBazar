@@ -1,0 +1,6 @@
+.review_message {
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0px 5px 7px gray;
+    border-radius: 5px;
+}

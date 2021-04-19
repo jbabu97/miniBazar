@@ -41,7 +41,7 @@ const PaymentCard = ({handleBooking}) => {
 
     return (
         <div>
-            <form className="border p-5 rounded bg-light mt-5" onSubmit={handleSubmit}>
+            <form className="border p-4 rounded bg-light mt-5" onSubmit={handleSubmit}>
                 <CardElement />
                 <button className="btn btn-success mt-5" type="submit" disabled={!stripe}>
                     Pay

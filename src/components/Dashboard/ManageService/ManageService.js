@@ -5,6 +5,7 @@ import Sidebar from '../Sidebar/Sidebar';
 const ManageService = () => {
     const [manageService, setManageService] = useState([]);
     console.log(manageService);
+    const [deleteService, setDeleteService] = useState({});
 
     useEffect(() => {
         fetch(`http://localhost:4747/services`)
@@ -20,8 +21,9 @@ const ManageService = () => {
           method: "DELETE",
         })
           .then((res) => res.json())
-          .then((result) => {
-            console.log("deleted clicked", result);
+          .then((data) => {
+              setDeleteService(data)
+            console.log("deleted clicked", data);
           });
       };
     

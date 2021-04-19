@@ -1,27 +1,22 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { useParams } from 'react-router';
-import { Link } from 'react-router-dom';
 import { UserContext } from '../../../App';
-import BookingForm from '../BookingForm/BookingForm';
 import PaymentProcess from '../PaymentProcess/PaymentProcess';
+import { useParams } from 'react-router';
+import './BookService.css';
 
 const BookService = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    const { register, handleSubmit, errors } = useForm();
+    
+    const {serviceId} = useParams();
+    console.log(serviceId);
+    const [bookService, setBookService] = useState({});
+    console.log(bookService);
+    
 
-    const [bookingData, setBookingData] = useState(null);
-
-    const onSubmit = data => {
-       
-        setBookingData(data);
-           
-    };
-
-    const handleBooking = (paymentId) => {
+    const handleBooking = (paymentId, data) => {
         const newBooking = {
             ...loggedInUser,
-            bookingService: bookingData, 
+            bookingService: bookService, 
             paymentId,
             orderTime: new Date()
         };
@@ -34,44 +29,35 @@ const BookService = () => {
         .then(res => res.json())
         .then(success => {
             if (success) {
+                setBookService(success);
                 alert('Thanks for booking service.')
+                
             }
         })
-    }
+    };
+
+
+    useEffect(() => {
+        fetch(`http://localhost:4747/serviceDetails/${serviceId}`)
+        .then(res => res.json())
+        .then(data => {
+            setBookService(data);
+            console.log(data);
+        })
+      }, [serviceId]);
+
 
     return (
-        <section>
-            <div className="row">
-                <div style={{display: bookingData ? 'none' : 'block'}} className="col-md-6 bg-info">
-                <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
-                    <div className="form-group">
-                        <input type="text"  name="name" ref={register({ required: true })} placeholder="Your Name" value={loggedInUser.name} className="form-control" />
-                        {errors.name && <span className="text-danger">This field is required</span>}
-
-                    </div>
-                    <div className="form-group">
-                        <input type="email" ref={register({ required: true })} name="email" placeholder="Email" value={loggedInUser.email} className="form-control" />
-                        {errors.email && <span className="text-danger">This field is required</span>}
-                    </div>
-                    <div className="form-group">
-                        <input type="text" ref={register({ required: true })} name="serviceName" placeholder="Service Name" className="form-control" />
-                        {errors.serviceName && <span className="text-danger">This field is required</span>}
-                    </div>
-                    <div className='form-group'>
-                        <textarea name="message" id=""  placeholder="Message" className="form-control" cols="30" rows="5"></textarea>
-                    </div>
-                    <div className="form-group text-right">
-                        <button type="submit" className="btn btn-success">Submit</button>
-                    </div>
-                </form>
-                    {/* <BookingForm ></BookingForm> */}
-                    {/* <Link to={`/bookingForm`}><button onClick={handleBooking} className="btn btn-success order_btn">Submit</button></Link> */}
-                </div>
-                <div style={{display: bookingData ? 'block' : 'none'}} className="col-md-6 bg-warning">
-                    <h2>Payment Here</h2>
+        <section className='row'>
+            <div>
+                <div className='service_detail border p-4 bg-info'>
+                    <img className='img-fluid' src={`data:image/png;base64,${bookService.image?.img}`} alt=""/>
+                    <h3 className='text-center my-3'>{bookService.newService?.name}</h3>
+                    <h5>Service Charge: {bookService.newService?.serviceCharge}</h5> 
                     <PaymentProcess handleBooking={handleBooking}></PaymentProcess>
                 </div>
             </div>
+            
         </section>
     );
 };

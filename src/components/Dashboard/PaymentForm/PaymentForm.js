@@ -1,11 +1,9 @@
 import { CardElement, useElements, useStripe } from '@stripe/react-stripe-js';
-import React, { useContext, useState } from 'react';
-import { useForm } from 'react-hook-form';
-import { UserContext } from '../../../App';
+import React, { useState } from 'react';
 
-const PaymentForm = ({handlePayment, bookService}) => {
-    // const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    // const { register, errors } = useForm();
+
+const PaymentForm = ({handlePayment}) => {
+
     const stripe = useStripe();
   const elements = useElements();
 

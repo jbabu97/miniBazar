@@ -8,12 +8,12 @@ import Services from '../Services/Services';
 
 const Home = () => {
     return (
-        <main className='container'>
+        <main>
             <Header></Header>
             <About></About>
             <Services></Services>
-            <FeatureWork></FeatureWork>
             <Review></Review>
+            <FeatureWork></FeatureWork>
             <Footer></Footer>
         </main>
     );

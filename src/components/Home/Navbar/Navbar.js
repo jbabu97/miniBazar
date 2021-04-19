@@ -1,17 +1,27 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { UserContext } from "../../../App";
 import Logo from '../../../photos/sewing_logo2.png';
 
 const Navbar = () => {
+  
+  const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
   return (
     <nav class="navbar navbar-expand-lg navbar-dark">
       <div class="container-fluid">
         <Link className="nav-link mr-4 active" aria-current="page" to="/home">
           <img src={Logo} alt=""/>
         </Link>
-        <Link to="/login">
-          <button className="btn btn-success">Login</button>
-        </Link>
+        {
+          loggedInUser.email ?
+            <Link to="/login">
+              <button className="btn btn-success">Logout</button>
+            </Link> : 
+            <Link to="/login">
+              <button className="btn btn-success">Login</button>
+            </Link>
+        }
         <button
           class="navbar-toggler"
           type="button"

@@ -18,15 +18,16 @@ const workData = [
 const FeatureWork = () => {
     return (
         <section className='my-5'>
-            <div>
-                <h1>Our Works</h1>
-                <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum consequuntur qui dolore atque, quam reprehenderit ut incidunt reiciendis magni enim!</p>
+            <div className='text-center'>
+                <h1 className='mb-5'>Our Works</h1>
+                <hr/>
+                <p className='w-50 mx-auto my-4'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum consequuntur qui dolore atque, quam reprehenderit magni enim!</p>
             </div>
             <div className="row">
                 {
                     workData.map(work => (
                         <div className="col-md-4">
-                            <img className='img-fluid' src={work.featureImg}/>
+                            <img className='img-fluid' src={work.featureImg} />
                         </div>
                     ))
                 }

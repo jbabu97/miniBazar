@@ -15,10 +15,6 @@ const BookList = () => {
     })
     }, []);
 
-    // const bookingStatus = document.getElementById('status').innerText;
-    // const showingStatus = document.getElementById('booking_status');
-    // showingStatus.innerText = bookingStatus;
-
     return (
         <section className='row'>
             <div className="col-md-3">
@@ -28,11 +24,16 @@ const BookList = () => {
                 <div className="row">
                     {
                         bookings.map(booking => (
-                            <div className="col-md-4">
+                            <div key={booking._id} className="col-md-4">
                                 <div className='book_list'>
-                                    <div id='booking_status' className="btn btn">status</div>
-                                    <div key={booking._id}>
-                                        <h4>{booking.bookingService.serviceName}</h4>
+                                    <div className='d-flex'>
+                                        <div className='booking_photo'>
+                                            <img src={`data:image/png;base64,${booking.bookingService.image?.img}`} alt=""/>
+                                        <div className="btn btn status_btn">status</div>
+                                        </div>
+                                    </div>
+                                    <div>
+                                        <h4>{booking.bookingService.newService.name}</h4>
                                         <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Excepturi vitae earum saepe illo soluta fugiat?</p>
                                     </div>
                                 </div>

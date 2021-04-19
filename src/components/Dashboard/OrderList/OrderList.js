@@ -1,10 +1,13 @@
 import React, { useEffect, useState } from 'react';
 import Sidebar from '../Sidebar/Sidebar';
 
-const Orderbooking = () => {
+const OrderBooking = () => {
 
     const [bookings, setBookings] = useState([]);
     console.log(bookings);
+
+    const [status, setStatus] = useState('');
+    console.log(status);
 
     useEffect(() => {
         fetch(`http://localhost:4747/bookings`)
@@ -13,7 +16,26 @@ const Orderbooking = () => {
             console.log(data);
             setBookings(data);
     })
-    }, [])
+    }, []);
+
+    const handleStatus = () => {
+
+
+    // useEffect(() => {
+        
+        fetch('http://localhost:4747/status', {
+            method: 'POST',
+            headers: { 'Content-Type' : 'application/json'},
+            body: JSON.stringify()
+        })
+        .then(res => res.json())
+        .then(result => {
+            setStatus(result)
+            console.log(result);
+        })
+    // }, [])
+}
+
 
     return (
         <section className='row'>
@@ -38,16 +60,17 @@ const Orderbooking = () => {
                                 bookings.map((booking, index) => (
                                     <tr key={booking._id}>
                                         <th >{index + 1}</th>
-                                        <td>{booking.bookingService.name}</td>
-                                        <td>{booking.bookingService.email}</td>
-                                        <td>{booking.bookingService.serviceName}</td>
+                                        <td>{booking.bookingService?.name}</td>
+                                        <td></td>
+                                        <td>{booking.bookingService.newService?.name}</td>
                                         <td>{booking.paymentId}</td>
                                         <td>
-                                            <select id='status' name="status">
+                                            <button onClick={handleStatus} className='btn'>Pending</button>
+                                            {/* <select id='status' name="status">
                                                 <option style={{color: 'red'}} value="pending">Pending</option>
                                                 <option style={{color: 'orange'}} value="onGoing">On Going</option>
                                                 <option style={{color: 'green'}} value="done">Done</option>
-                                            </select>
+                                            </select> */}
                                         </td>
                                     </tr>
                                 ))
@@ -60,4 +83,4 @@ const Orderbooking = () => {
     );
 };
 
-export default Orderbooking;
+export default OrderBooking;

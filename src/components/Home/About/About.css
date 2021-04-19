@@ -2,10 +2,20 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    color: #e0c591;
 }
-.about_content_left {
+.about_left {
     height: 100%;
     padding: 40px;
-    background-color: antiquewhite;
+    background-image: linear-gradient(180deg, #626f7c, #1d2124);
     text-align: center;
+}
+.about_left p {
+    margin: 0 50px;
+}
+.about_right {
+    background-image: url('../../../photos/top_banner_3.webp');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-position: center center;
 }

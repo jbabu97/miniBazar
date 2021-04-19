@@ -2,4 +2,13 @@
     background: #7f91a1;
     padding: 10px;
     border-radius: 5px;
+    position: relative;
+}
+.booking_photo img{
+    width: 50px;
+    border-radius: 50%;
+}
+.status_btn {
+    position: absolute;
+    right: 10px;
 }

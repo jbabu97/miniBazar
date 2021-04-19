@@ -59,7 +59,7 @@ const AddReview = () => {
                                 {errors.company && <span className="text-danger">This field is required</span>}
                             </div>
                             <div>
-                                <textarea ref={register({ required: true })} name="message" id="" cols="30" rows="10" className="form-control" maxlength="100" ></textarea>
+                                <textarea ref={register({ required: true })} name="message" id="" cols="30" rows="7" className="form-control" maxlength="100" ></textarea>
                                 {errors.message && <span className="text-danger">This field is required</span>}
                             </div>
 

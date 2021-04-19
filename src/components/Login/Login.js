@@ -7,13 +7,14 @@ import { useHistory, useLocation } from 'react-router';
 import GoogleIcon from '../../photos/google.png';
 import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
-import Logo from '../../photos/sewingLogo.png';
+import Logo from '../../photos/sewing_logo2.png';
+import Navbar from '../Home/Navbar/Navbar';
 
 
 const Login = () => {
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-
+    console.log(loggedInUser);
     const { register, handleSubmit, formState: { errors } } = useForm();
     const onSubmit = data => console.log(data);
 
@@ -39,6 +40,7 @@ const Login = () => {
           storeAuthToken();
         }).catch(function (error) {
           const errorMessage = error.message;
+          setLoggedInUser(errorMessage);
           console.log(errorMessage);
         });
       };
@@ -57,7 +59,9 @@ const Login = () => {
   
 
     return (
-        <div className='text-center login_form'>
+        <div className='login'>
+          <Navbar></Navbar>
+          <div className='text-center login_form'>
             <img src={Logo} alt=""/>
             <h2 className='my-4'>Login</h2>
              <form onSubmit={handleSubmit(onSubmit)}>
@@ -73,6 +77,7 @@ const Login = () => {
             <div>
                 <div onClick={handleGoogleSignIn} className="btn btn-dark"><img className='google_icon' src={GoogleIcon} alt=""/> Continue With Google</div>
             </div>
+          </div>
         </div>
     );
 };
