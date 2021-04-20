@@ -22,8 +22,8 @@ const AddAdmin = () => {
         .then(res => res.json())
         .then(success => {
             if (success) {
-                alert('Admin added successfully.');
                 setAdmin(success);
+                alert('Admin added successfully.');
             }
         })
                 

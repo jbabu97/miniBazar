@@ -26,11 +26,9 @@ const PaymentForm = ({handlePayment}) => {
     });
 
     if (error) {
-      console.log('[error]', error);
       setPaymentError(error.message);
       setPaymentSuccess(null);
     } else {
-      console.log('[PaymentMethod]', paymentMethod);
       setPaymentSuccess(paymentMethod.id);
       setPaymentError(null);
       handlePayment(paymentMethod.id);

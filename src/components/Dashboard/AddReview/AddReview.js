@@ -6,7 +6,7 @@ import './AddReview.css';
 
 const AddReview = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    console.log(loggedInUser);
+    
     const { register, handleSubmit, errors } = useForm();
     
 

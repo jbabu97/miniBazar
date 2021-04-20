@@ -2,8 +2,7 @@ import React from 'react';
 import './BookList.css';
 
 const BookList = ({bookingByCustomer}) => {
-    console.log(bookingByCustomer);   
-
+    
     return (
         <section>
             <div>

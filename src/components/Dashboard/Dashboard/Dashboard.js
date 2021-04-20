@@ -8,9 +8,7 @@ import { BeatLoader } from 'react-spinners';
 const Dashboard = () => {
     const [bookingByCustomer, setBookingByCustomer] = useState([]);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    console.log(loggedInUser.email);
-
-    
+        
     const [spinner, setSpinner] = useState(false);
 
     useEffect(() => {
@@ -21,7 +19,6 @@ const Dashboard = () => {
         })
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setBookingByCustomer(data);
         })
         setSpinner(true)

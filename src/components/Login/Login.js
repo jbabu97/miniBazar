@@ -15,7 +15,7 @@ const Login = () => {
   initializeLoginFramework();
 
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
-    console.log(loggedInUser);
+    
     const { register, handleSubmit, formState: { errors } } = useForm();
 
     const onSubmit = data => console.log(data);

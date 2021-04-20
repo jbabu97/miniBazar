@@ -9,9 +9,7 @@ const BookService = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     
     const {bookingId} = useParams();
-    console.log(bookingId);
     const [bookService, setBookService] = useState({});
-    console.log(bookService);
     
 
     const handleBooking = (paymentId) => {
@@ -22,7 +20,6 @@ const BookService = () => {
             paymentId,
             orderTime: new Date()
         };
-        console.log(newBooking);
 
         fetch('http://localhost:4747/addBooking', {
             method: 'POST',
@@ -33,21 +30,18 @@ const BookService = () => {
         .then(success => {
             if (success) {
                 setBookService(success);
-                console.log(success);
                 alert('Thanks for booking service.');
                 
             }
         })
     };
 
-    console.log('clicked for booking');
 
     useEffect(() => {
         fetch(`http://localhost:4747/serviceDetails/${bookingId}`)
         .then(res => res.json())
         .then(data => {
             setBookService(data);
-            console.log(data);
         })
       }, [bookingId]);
 

@@ -5,13 +5,11 @@ import Sidebar from '../Sidebar/Sidebar';
 const OrderBooking = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [bookings, setBookings] = useState([]);
-    console.log(bookings);
 
     useEffect(() => {
         fetch(`http://localhost:4747/bookings`)
         .then(res => res.json())
         .then(data => {
-            console.log(data);
             setBookings(data);
     })
     }, []);
@@ -46,12 +44,7 @@ const OrderBooking = () => {
                                         <td>{booking.newBooking?.bookingService.newService?.name}</td>
                                         <td>{booking.newBooking?.paymentId}</td>
                                         <td>
-                                            <button className='btn'>Pending</button>
-                                            {/* <select id='status' name="status">
-                                                <option style={{color: 'red'}} value="pending">Pending</option>
-                                                <option style={{color: 'orange'}} value="onGoing">On Going</option>
-                                                <option style={{color: 'green'}} value="done">Done</option>
-                                            </select> */}
+                                            <button className='btn'>Pending</button>                                            
                                         </td>
                                     </tr>
                                 ))

@@ -12,13 +12,11 @@ const AddService = () => {
         const newService = {...addService};
         newService[e.target.name] = e.target.value;
         setAddService(newService);
-        console.log(newService);
     };
 
     const handleFileChange = (e) => {
         const newFile = e.target.files[0];
         setFile(newFile);
-        console.log(newFile);
     };
 
     const handleSubmit = () => {
@@ -34,12 +32,10 @@ const AddService = () => {
         .then(res => res.json())
         .then(data => {
           setAddService(data)
-          console.log(data)
         })
         .catch(error => {
             const errorMessage = error.message;
             setAddService(errorMessage);
-            console.log(errorMessage);
         })
       };
       

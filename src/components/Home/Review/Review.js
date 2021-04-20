@@ -15,7 +15,6 @@ const Review = () => {
             setReviews(data);
             console.log(data);
     });
-    // setSpinner(true)
     }, []);
     return (
         <section className='container mt-5 review_section'>

@@ -7,7 +7,7 @@ import { BeatLoader } from 'react-spinners';
 const ManageService = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [manageService, setManageService] = useState([]);
-    console.log(manageService);
+    
     const [deleteService, setDeleteService] = useState({});
 
     const [spinner, setSpinner] = useState(false);
@@ -22,14 +22,13 @@ const ManageService = () => {
       }, []);
 
       const handleDeleteService = (serviceId) => {
-        console.log("deleted");
+        
         fetch(`http://localhost:4747/deleteService/${serviceId}`, {
           method: "DELETE",
         })
           .then((res) => res.json())
           .then((data) => {
                 setDeleteService(data)
-                console.log("deleted clicked", data);
                 alert('Service has been removed.')
           });
       };
