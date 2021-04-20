@@ -13,7 +13,7 @@ const ManageService = () => {
     const [spinner, setSpinner] = useState(false);
 
     useEffect(() => {
-        fetch(`http://localhost:4747/services`)
+        fetch(`https://whispering-bayou-36600.herokuapp.com/services`)
         .then(res => res.json())
         .then(data => {
             setManageService(data);
@@ -23,7 +23,7 @@ const ManageService = () => {
 
       const handleDeleteService = (serviceId) => {
         
-        fetch(`http://localhost:4747/deleteService/${serviceId}`, {
+        fetch(`https://whispering-bayou-36600.herokuapp.com/deleteService/${serviceId}`, {
           method: "DELETE",
         })
           .then((res) => res.json())

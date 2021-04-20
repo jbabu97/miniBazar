@@ -12,7 +12,7 @@ const Dashboard = () => {
     const [spinner, setSpinner] = useState(false);
 
     useEffect(() => {
-        fetch('http://localhost:4747/bookingByCustomer', {
+        fetch('https://whispering-bayou-36600.herokuapp.com/bookingByCustomer', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({email: loggedInUser.email})

@@ -7,7 +7,7 @@ const OrderBooking = () => {
     const [bookings, setBookings] = useState([]);
 
     useEffect(() => {
-        fetch(`http://localhost:4747/bookings`)
+        fetch(`https://whispering-bayou-36600.herokuapp.com/bookings`)
         .then(res => res.json())
         .then(data => {
             setBookings(data);

@@ -21,7 +21,7 @@ const BookService = () => {
             orderTime: new Date()
         };
 
-        fetch('http://localhost:4747/addBooking', {
+        fetch('https://whispering-bayou-36600.herokuapp.com/addBooking', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
             body: JSON.stringify({newBooking, email: loggedInUser.email})  
@@ -38,7 +38,7 @@ const BookService = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:4747/serviceDetails/${bookingId}`)
+        fetch(`https://whispering-bayou-36600.herokuapp.com/serviceDetails/${bookingId}`)
         .then(res => res.json())
         .then(data => {
             setBookService(data);

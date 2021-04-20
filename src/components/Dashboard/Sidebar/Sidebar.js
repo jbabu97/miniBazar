@@ -17,7 +17,7 @@ const Sidebar = () => {
     let { from } = location.state || { from: { pathname: "/" } };
 
     useEffect(() => {
-        fetch(`http://localhost:4747/isAdmin`, {
+        fetch(`https://whispering-bayou-36600.herokuapp.com/isAdmin`, {
             method: 'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({email: loggedInUser.email})

@@ -11,7 +11,7 @@ const Services = () => {
     const [spinner, setSpinner] = useState(false);
 
     useEffect(() => { 
-        fetch(`http://localhost:4747/services`)
+        fetch(`https://whispering-bayou-36600.herokuapp.com/services`)
         .then(res => res.json())
         .then(data => {
             setService(data);

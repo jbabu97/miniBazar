@@ -14,7 +14,7 @@ const AddAdmin = () => {
             email: data.email
         }
         
-        fetch(`http://localhost:4747/addAdmin`, {
+        fetch(`https://whispering-bayou-36600.herokuapp.com/addAdmin`, {
             method: 'POST',
             headers: { 'Content-Type' : 'application/json'},
             body: JSON.stringify({adminData})
