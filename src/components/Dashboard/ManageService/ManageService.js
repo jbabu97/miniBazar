@@ -1,8 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../App';
 import ManageList from '../ManageList/ManageList';
 import Sidebar from '../Sidebar/Sidebar';
 
 const ManageService = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [manageService, setManageService] = useState([]);
     console.log(manageService);
     const [deleteService, setDeleteService] = useState({});
@@ -22,8 +24,9 @@ const ManageService = () => {
         })
           .then((res) => res.json())
           .then((data) => {
-              setDeleteService(data)
-            console.log("deleted clicked", data);
+                setDeleteService(data)
+                console.log("deleted clicked", data);
+                alert('Service has been removed.')
           });
       };
     
@@ -34,7 +37,8 @@ const ManageService = () => {
             </div>
             <div className="col-md-9">
                 <div>
-                    <h2>Manage Services</h2>
+                    <h1 className='ml-5 my-5'>Manage Services</h1>
+                    <h6 className='user_name'>{loggedInUser.name}</h6>
                     {
                         manageService.map(manage => <ManageList key={manage._id} manage={manage} handleDelete={handleDeleteService}></ManageList>)
                     }

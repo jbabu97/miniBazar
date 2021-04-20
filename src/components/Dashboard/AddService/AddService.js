@@ -1,8 +1,10 @@
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
+import { UserContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
 
 
 const AddService = () => {
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [addService, setAddService] = useState({});
     const [file, setFile] = useState(null);
 
@@ -44,11 +46,13 @@ const AddService = () => {
 
     return (
         <section className='row'>
-            <div className="col-md-3">
+            <div className="col-md-3 p-0">
                 <Sidebar></Sidebar>
             </div>
-            <div className="col-md-9">
-            <form onSubmit={handleSubmit} className='mx-4 w-75'>
+            <div className="col-md-9 dash_bg p-0">
+                <h1 className='ml-5 my-5'>Add Service</h1>
+                <h6 className='user_name'>{loggedInUser.name}</h6>
+            <form onSubmit={handleSubmit} className='mx-5 w-75'>
                         <div class="form-group">
                             <label for="name">Name</label>
                             <input onBlur={handleBlur} name='name' type="text" class="form-control" id="name" placeholder="Name"/>
@@ -63,7 +67,7 @@ const AddService = () => {
                             <br/>
                             <input onChange={handleFileChange} name='file' type="file" id="file" />
                         </div>
-                        <button type="submit" class="btn btn-info">Add Service</button>
+                        <button type="submit" class="custom_btn">Add Service</button>
                     </form>
             </div>
         </section>

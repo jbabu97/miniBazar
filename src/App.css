@@ -1,0 +1,30 @@
+body {
+    /* font-family: 'Fira Sans', sans-serif; */
+    font-family: 'Dancing Script', cursive;
+}
+.custom_btn {
+    background-image: linear-gradient(90deg, #626f7c, #1d2124);
+    color: #e0c591;
+    padding: 5px 10px;
+    border-radius: 15px;
+    border: 2px solid #c9af7f;
+    outline: none;
+    transition: .3s;
+    text-transform: uppercase;
+}
+.custom_btn:hover {
+    background-image: linear-gradient(90deg, #1d2124, #626f7c);
+    color: #ac966d;
+    padding: 5px 10px;
+    border-radius: 15px;
+}
+
+hr {
+    width: 70px;
+    border-top: 5px dotted #948585;
+    margin-bottom: 40px;
+  }
+  .dash_bg{
+    background-color: #F4FDFB;
+  }
+  

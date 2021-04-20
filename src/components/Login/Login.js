@@ -9,54 +9,43 @@ import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import Logo from '../../photos/sewing_logo2.png';
 import Navbar from '../Home/Navbar/Navbar';
+import { initializeLoginFramework, handleGoogleSignIn, handleSignOut, handleFbSignIn, createUserWithEmailAndPassword, signInWithEmailAndPassword } from './LoginManager';
 
 
 const Login = () => {
 
+  initializeLoginFramework();
+
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     console.log(loggedInUser);
     const { register, handleSubmit, formState: { errors } } = useForm();
-    const onSubmit = data => console.log(data);
 
-    if (firebase.apps.length === 0) {
-        firebase.initializeApp(firebaseConfig);
-      }
+    const onSubmit = data => console.log(data);
 
       const history = useHistory();
       const location = useLocation();
       let { from } = location.state || { from: { pathname: "/" } };
 
-      const handleGoogleSignIn = () => {
-        const googleProvider = new firebase.auth.GoogleAuthProvider();
-        firebase.auth().signInWithPopup(googleProvider).then(function (result) {
-          const { displayName, email } = result.user;
-          const signedInUser = { 
-            name: displayName, 
-            email: email
-          }
-          console.log(signedInUser);
-          setLoggedInUser(signedInUser);
-          history.replace(from);
-          storeAuthToken();
-        }).catch(function (error) {
-          const errorMessage = error.message;
-          setLoggedInUser(errorMessage);
-          console.log(errorMessage);
-        });
-      };
-
-      const storeAuthToken = () => {
-        firebase.auth().currentUser.getIdToken(true)
-        .then(function(idToken) {
-          sessionStorage.setItem('token', idToken)
-          history.replace(from);
-        }).catch(function(error) {
-          const errorMessage = error.message;
-          setLoggedInUser(errorMessage)
-        });
-        
-      }
+      const googleSignIn = () => {
+        handleGoogleSignIn()
+        .then(res => {
+          handleResponse(res, true);
+        })
+    }
   
+    const signOut = () => {
+        handleSignOut()
+        .then(res => {
+            handleResponse(res, false);
+        })
+    }
+  
+    const handleResponse = (res, redirect) =>{
+      setLoggedInUser(res);
+      if(redirect){
+          history.replace(from);
+      }
+    }
 
     return (
         <div className='login'>
@@ -71,11 +60,17 @@ const Login = () => {
                 <input type='email' name='email' className='form-control' placeholder='Email' {...register({ required: true })} />
                 {errors.email && <span style={{color: 'red'}}>This field is required</span>}
                 <br/>
-                <input type="submit" className='btn btn-info' value='Login' />
+                <input type="submit" className='custom_btn' value='Login' />
             </form>
-            <p className='my-4'>or</p>
+            <div className='my-4'>
+              <div className="d-flex justify-content-center">
+                <div style={{borderTop: '1px solid gray', width:'48%'}}></div>
+                <p style={{marginTop:'-13px'}}>or</p>
+                <div style={{borderTop:'1px solid gray', width:'48%'}}></div>
+              </div>
+            </div>
             <div>
-                <div onClick={handleGoogleSignIn} className="btn btn-dark"><img className='google_icon' src={GoogleIcon} alt=""/> Continue With Google</div>
+                <button onClick={googleSignIn} className="custom_btn"><img className='google_icon' src={GoogleIcon} alt=""/> Continue With Google</button>
             </div>
           </div>
         </div>

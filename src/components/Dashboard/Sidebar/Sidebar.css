@@ -1,11 +1,14 @@
 aside {
     background-image: linear-gradient(180deg, #626f7c, #1d2124);
-    min-height: 100vh;
+    
 }
 aside li {
     list-style: none;
     padding: 10px;
     color: white;
+}
+aside li:hover {
+    background: #5c656e;
 }
 .aside_icon{
     margin-right: 10px;
@@ -17,3 +20,9 @@ aside li {
     position: absolute;
     bottom: 0;
 }
+
+@media only screen and (min-width: 768px) {
+    aside {
+        min-height: 100vh;
+    }
+  }

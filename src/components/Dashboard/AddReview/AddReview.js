@@ -2,6 +2,7 @@ import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
 import { UserContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
+import './AddReview.css';
 
 const AddReview = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
@@ -27,7 +28,7 @@ const AddReview = () => {
         .then(res => res.json())
         .then(success => {
             if (success) {
-                alert('Admin added successfully.')
+                alert('Thanks for your feedback.')
             }
         })
                 
@@ -35,13 +36,14 @@ const AddReview = () => {
 
     return (
         <section className='row'>
-            <div className="col-md-3">
+            <div className="col-md-3 p-0">
                 <Sidebar></Sidebar>
             </div>
-            <div className="col-md-9">
-                <div className="add_product">
-                    <h2>Add Review</h2>
-                        <form className="p-5" onSubmit={handleSubmit(onSubmit)}>
+            <div className="col-md-9 dash_bg p-0">
+                <div className="add_review">
+                    <h1 className='ml-5 my-5'>Add Review</h1>
+                    <h6 className='user_name'>{loggedInUser.name}</h6>
+                        <form className="px-5" onSubmit={handleSubmit(onSubmit)}>
                             <div className="form-group">
                                 <input type="text" ref={register({ required: true })} name="name" placeholder="Name" className="form-control" value={loggedInUser.name} />
                                 {errors.name && <span className="text-danger">This field is required</span>}
@@ -63,8 +65,8 @@ const AddReview = () => {
                                 {errors.message && <span className="text-danger">This field is required</span>}
                             </div>
 
-                            <div className="form-group text-right">
-                                <button type="submit" className="btn btn-info">Submit</button>
+                            <div className="form-group text-right mt-4">
+                                <button type="submit" className="custom_btn">ADD</button>
                             </div>
                         </form>
                 </div>

@@ -1,15 +1,20 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { faCalendar, faCartPlus, faCog, faFilePrescription, faHome, faSignOutAlt, faTh, faThList, faUserCog, faUserMd, faUserPlus, faUsers } from '@fortawesome/free-solid-svg-icons';
+import { faCog, faHome, faPlus, faSignOutAlt, faStar, faThList, faUserPlus } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { Link } from 'react-router-dom';
+import { Link, useHistory, useLocation } from 'react-router-dom';
 import './Sidebar.css';
 import { UserContext } from '../../../App';
 import Logo from '../../../photos/sewing_logo2.png';
+import { handleSignOut } from '../../Login/LoginManager';
 
 const Sidebar = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
 
     const [isAdmin, setIsAdmin] = useState(false);
+
+    const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
 
     useEffect(() => {
         fetch(`http://localhost:4747/isAdmin`, {
@@ -20,6 +25,15 @@ const Sidebar = () => {
         .then(res => res.json())
         .then(data => setIsAdmin(data))
     }, []);
+
+    
+    const signOut = () => {
+        handleSignOut()
+        .then(res => {
+            setLoggedInUser(res);
+            history.replace(from);
+        })
+    }
     
     return (
         <aside>
@@ -27,8 +41,8 @@ const Sidebar = () => {
                 <Link to='/home'><img src={Logo} alt=""/></Link>
             </div>
             <ul>
-                {/* {
-                    isAdmin ?                 */}
+                {
+                    isAdmin &&               
                     <div>
                         <Link to='/orderList' style={{textDecoration: 'none'}}>
                             <li><FontAwesomeIcon className="aside_icon" icon={faThList} ></FontAwesomeIcon> Order List</li>
@@ -38,31 +52,26 @@ const Sidebar = () => {
                         </Link>
                         
                         <Link to='/addService' style={{textDecoration: 'none'}}>
-                            <li><FontAwesomeIcon className="aside_icon" icon={faUserMd} ></FontAwesomeIcon> Add Service</li>
+                            <li><FontAwesomeIcon className="aside_icon" icon={faPlus} ></FontAwesomeIcon> Add Service</li>
                         </Link>
                         <Link to='/manageService' style={{textDecoration: 'none'}}>
                             <li><FontAwesomeIcon className="aside_icon" icon={faCog} ></FontAwesomeIcon> Manage Service</li>
                         </Link>
-                    </div> 
-                
-                    <div>
-                        <Link to='/dashboard' style={{textDecoration: 'none'}}>
-                        <li><FontAwesomeIcon className="aside_icon" icon={faCartPlus} ></FontAwesomeIcon> Booking</li>
-                        </Link>
-                        <Link to='/bookingList' style={{textDecoration: 'none'}}>
-                            <li><FontAwesomeIcon className="aside_icon" icon={faThList} ></FontAwesomeIcon> Booking List</li>
-                        </Link>
-                        <Link to='/addReview' style={{textDecoration: 'none'}}>
-                            <li><FontAwesomeIcon className="aside_icon" icon={faFilePrescription} ></FontAwesomeIcon> Add Review</li>
-                        </Link>
 
                     </div>
+                }
+                <Link to='/dashboard' style={{textDecoration: 'none'}}>
+                    <li><FontAwesomeIcon className="aside_icon" icon={faThList} ></FontAwesomeIcon> Booking List</li>
+                </Link>
+                <Link to='/addReview' style={{textDecoration: 'none'}}>
+                    <li><FontAwesomeIcon className="aside_icon" icon={faStar} ></FontAwesomeIcon> Add Review</li>
+                </Link>
                 
                 <Link to='/home' style={{textDecoration: 'none'}}>
                     <li><FontAwesomeIcon className="aside_icon" icon={faHome} ></FontAwesomeIcon> Home</li>
                 </Link>
             </ul>
-            <button onClick={() => setLoggedInUser({})} className="logout"><FontAwesomeIcon className="aside_icon" icon={faSignOutAlt} ></FontAwesomeIcon> Log Out</button>
+            <button onClick={signOut} className="logout"><FontAwesomeIcon className="aside_icon" icon={faSignOutAlt} ></FontAwesomeIcon> Log Out</button>
         </aside>
     );
 

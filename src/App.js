@@ -1,4 +1,5 @@
 import React, { createContext, useState } from "react";
+import './App.css';
 import {
   BrowserRouter as Router,
   Switch,
@@ -8,6 +9,7 @@ import AddAdmin from "./components/Dashboard/AddAdmin/AddAdmin";
 import AddReview from "./components/Dashboard/AddReview/AddReview";
 import AddService from "./components/Dashboard/AddService/AddService";
 import BookList from "./components/Dashboard/BookingList/BookList";
+import BookService from "./components/Dashboard/BookService/BookService";
 import Dashboard from "./components/Dashboard/Dashboard/Dashboard";
 import ManageService from "./components/Dashboard/ManageService/ManageService";
 import OrderList from "./components/Dashboard/OrderList/OrderList";
@@ -43,9 +45,9 @@ function App() {
             <Route path='/bookingList'>
               <BookList></BookList>
             </Route>
-            <PrivateRoute path='/bookService'>
+            {/* <PrivateRoute path='/bookService'>
               <Dashboard></Dashboard>
-            </PrivateRoute>
+            </PrivateRoute> */}
             <Route path='/orderList'>
               <OrderList></OrderList>
             </Route>
@@ -58,9 +60,9 @@ function App() {
             <Route path='/manageService'>
               <ManageService></ManageService>
             </Route>
-            <Route path='/bookService/:serviceId'>
-              <Dashboard></Dashboard>
-            </Route>
+            <PrivateRoute path='/bookService/:bookingId'>
+              <BookService></BookService>
+            </PrivateRoute>
             <Route exact path='/'>
               <Home></Home>
             </Route>

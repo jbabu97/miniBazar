@@ -1,0 +1,16 @@
+.gallery {
+    cursor: pointer;
+    position: relative;
+    transition: .3s;
+}
+
+.gallery:hover::before{
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    background-color: #3A4256;
+    opacity: .7;
+    height: 100%;
+    width: 100%;
+}

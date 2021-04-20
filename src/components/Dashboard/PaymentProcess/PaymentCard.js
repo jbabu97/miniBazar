@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import {CardElement, useStripe, useElements} from '@stripe/react-stripe-js';
+import { Link } from 'react-router-dom';
 
 
 
@@ -12,7 +13,7 @@ const PaymentCard = ({handleBooking}) => {
 
   const handleSubmit = async (event) => {
     
-    event.preventDefault();
+    // event.preventDefault();
 
     if (!stripe || !elements) {
       
@@ -41,11 +42,13 @@ const PaymentCard = ({handleBooking}) => {
 
     return (
         <div>
-            <form className="border p-4 rounded bg-light mt-5" onSubmit={handleSubmit}>
+            <form className="border p-4 rounded bg-light mt-3" onSubmit={handleSubmit}>
                 <CardElement />
-                <button className="btn btn-success mt-5" type="submit" disabled={!stripe}>
-                    Pay
-                </button>
+                <Link>
+                  <button className="custom_btn mt-3" type="submit" disabled={!stripe}>
+                      Pay
+                  </button>
+                  </Link>
             </form>
             {paymentError && <p style={{color: 'red'}}>{paymentError}</p>}
             {paymentSuccess && <p style={{color: 'green'}}>Your payment was successful.</p>}

@@ -1,13 +1,11 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import { UserContext } from '../../../App';
 import Sidebar from '../Sidebar/Sidebar';
 
 const OrderBooking = () => {
-
+    const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [bookings, setBookings] = useState([]);
     console.log(bookings);
-
-    const [status, setStatus] = useState('');
-    console.log(status);
 
     useEffect(() => {
         fetch(`http://localhost:4747/bookings`)
@@ -18,24 +16,6 @@ const OrderBooking = () => {
     })
     }, []);
 
-    const handleStatus = () => {
-
-
-    // useEffect(() => {
-        
-        fetch('http://localhost:4747/status', {
-            method: 'POST',
-            headers: { 'Content-Type' : 'application/json'},
-            body: JSON.stringify()
-        })
-        .then(res => res.json())
-        .then(result => {
-            setStatus(result)
-            console.log(result);
-        })
-    // }, [])
-}
-
 
     return (
         <section className='row'>
@@ -43,8 +23,9 @@ const OrderBooking = () => {
                 <Sidebar></Sidebar>
             </div>
             <div className="col-md-9">
-                <div className="add_product">
-                    <h2>Booking booking</h2>
+                <div className='ml-5'>
+                    <h1 className='my-5'>All Bookings</h1>
+                    <h6 className='user_name'>{loggedInUser.name}</h6>
                     <table className="table">
                             <thead>
                                 <tr>
@@ -60,12 +41,12 @@ const OrderBooking = () => {
                                 bookings.map((booking, index) => (
                                     <tr key={booking._id}>
                                         <th >{index + 1}</th>
-                                        <td>{booking.bookingService?.name}</td>
-                                        <td></td>
-                                        <td>{booking.bookingService.newService?.name}</td>
-                                        <td>{booking.paymentId}</td>
+                                        <td>{booking.newBooking?.name}</td>
+                                        <td>{booking.newBooking?.email}</td>
+                                        <td>{booking.newBooking?.bookingService.newService?.name}</td>
+                                        <td>{booking.newBooking?.paymentId}</td>
                                         <td>
-                                            <button onClick={handleStatus} className='btn'>Pending</button>
+                                            <button className='btn'>Pending</button>
                                             {/* <select id='status' name="status">
                                                 <option style={{color: 'red'}} value="pending">Pending</option>
                                                 <option style={{color: 'orange'}} value="onGoing">On Going</option>

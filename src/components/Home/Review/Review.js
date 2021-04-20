@@ -19,11 +19,11 @@ const Review = () => {
     // setSpinner(true)
     }, []);
     return (
-        <section className='mt-5 review_section'>
+        <section className='container mt-5 review_section'>
             
                 <div className='px-4 text-center'>
                     <div>
-                        <h1 className='mt-5'>Clients Quote</h1>
+                        <h1 className='my-5'>Clients Quote</h1>
                         <hr/>
                         <p className='w-50 mx-auto'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium totam deleniti blanditiis odio. Ad, temporibus? Lorem ipsum dolor sit amet.</p>
                     <div className='my-5'>

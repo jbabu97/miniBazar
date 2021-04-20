@@ -1,11 +1,25 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useHistory, useLocation } from "react-router-dom";
 import { UserContext } from "../../../App";
 import Logo from '../../../photos/sewing_logo2.png';
+import { handleSignOut } from "../../Login/LoginManager";
 
 const Navbar = () => {
   
   const [loggedInUser, setLoggedInUser] = useContext(UserContext);
+
+  const history = useHistory();
+    const location = useLocation();
+    let { from } = location.state || { from: { pathname: "/" } };
+
+
+  const signOut = () => {
+    handleSignOut()
+    .then(res => {
+        setLoggedInUser(res);
+        history.replace(from);
+    })
+}
 
   return (
     <nav class="navbar navbar-expand-lg navbar-dark">
@@ -16,10 +30,10 @@ const Navbar = () => {
         {
           loggedInUser.email ?
             <Link to="/login">
-              <button className="btn btn-success">Logout</button>
+              <button onClick={signOut} className="custom_btn">Logout</button>
             </Link> : 
             <Link to="/login">
-              <button className="btn btn-success">Login</button>
+              <button className="custom_btn">Login</button>
             </Link>
         }
         <button
@@ -45,18 +59,13 @@ const Navbar = () => {
               </Link>
             </li>
             <li className="nav-item">
-              <Link className="nav-link mr-4" to="/patientsList">
+              <Link className="nav-link mr-4" href='#about'>
                 About
               </Link>
             </li>
             <li className="nav-item">
               <Link className="nav-link mr-4 " to="/dashboard">
                 Dashboard
-              </Link>
-            </li>
-            <li className="nav-item">
-              <Link className="nav-link mr-4" to="/contact">
-                Contact Us
               </Link>
             </li>
             <li className="nav-item">

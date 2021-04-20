@@ -1,4 +1,4 @@
-import { faFacebook, faFacebookSquare, faInstagram, faLinkedin, faTwitter, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
+import { faFacebookSquare, faInstagram, faLinkedin, faTwitterSquare } from '@fortawesome/free-brands-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import React from 'react';
 import { Link } from 'react-router-dom';
@@ -18,7 +18,7 @@ const Footer = () => {
                 <a href="#"><FontAwesomeIcon className="social_icon" icon={faInstagram} /></a>
             </div>
             <div className="copyright">
-                <p>mama sewing &copy; {(new Date()).getFullYear()} All right reserved</p>
+                <p>mama-sewing &copy; {(new Date()).getFullYear()} All right reserved</p>
             </div>
         </section>
     );

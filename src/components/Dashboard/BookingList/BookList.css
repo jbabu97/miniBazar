@@ -1,5 +1,6 @@
 .book_list {
-    background: #7f91a1;
+    background-image: linear-gradient(180deg, #626f7c, #1d2124);
+    color: whitesmoke;
     padding: 10px;
     border-radius: 5px;
     position: relative;
