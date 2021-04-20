@@ -35,9 +35,7 @@ const Dashboard = () => {
                 <div className="col-md-9 dash_content">
                     <h1 className='ml-5 my-5'>Booking List</h1>
                     <h6 className='user_name'>{loggedInUser.name}</h6>
-                    <div className="spinner">
-                        <BeatLoader size={30} color='#be2edd' loading/>
-                    </div>
+                    
                     {
                         spinner ?
                         <div>
