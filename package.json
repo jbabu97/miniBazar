@@ -13,6 +13,7 @@
     "@testing-library/jest-dom": "^5.11.10",
     "@testing-library/react": "^11.2.6",
     "@testing-library/user-event": "^12.8.3",
+    "animate.css": "^4.1.1",
     "axios": "^0.21.1",
     "bootstrap": "^4.6.0",
     "firebase": "^8.4.1",
@@ -24,6 +25,7 @@
     "react-responsive-carousel": "^3.2.18",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.3",
+    "react-spinners": "^0.10.6",
     "web-vitals": "^1.1.1"
   },
   "scripts": {

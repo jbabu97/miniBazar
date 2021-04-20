@@ -1,11 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import ServiceDetails from '../ServiceDetails/ServiceDetails';
 import './Services.css';
+import { BeatLoader } from 'react-spinners';
+
 
 
 
 const Services = () => {
     const [service, setService] = useState([]);
+    const [spinner, setSpinner] = useState(false);
 
     useEffect(() => { 
         fetch(`http://localhost:4747/services`)
@@ -14,18 +17,25 @@ const Services = () => {
             setService(data);
             console.log(data);
     });
-    // setSpinner(true)
+    setSpinner(true)
     }, []);
     
     return (
         <section className='container mt-5'>
+            <h6 className='text-center'>Services</h6>
             <h1 className='mb-5 text-center'>Our offers to clients</h1>
             <hr/>
-            <div className='row'>
-                {
-                    service.map(serve => <ServiceDetails key={serve._id} serve={serve}></ServiceDetails>)
-                }
-            </div>
+            {
+                spinner ?
+                <div className='row'>
+                    {
+                        service.map(serve => <ServiceDetails key={serve._id} serve={serve}></ServiceDetails>)
+                    }   
+                </div> :
+                    <div className="spinner">
+                    <BeatLoader size={30} color='#c9af7f' loading/>
+                </div>
+            }
         </section>
     );
 };

@@ -14,4 +14,8 @@
 .header_content h1 {
     font-size: 3rem;
     margin-bottom: 50px;
+    color: #e0c591;
+}
+.header_content p {
+    color: #e0c591;
 }

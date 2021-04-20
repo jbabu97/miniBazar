@@ -1,5 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
-import { UserContext } from '../../../App';
+import React from 'react';
 import './BookList.css';
 
 const BookList = ({bookingByCustomer}) => {

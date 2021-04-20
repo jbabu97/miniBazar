@@ -12,8 +12,8 @@ const PaymentCard = ({handleBooking}) => {
   const [paymentSuccess, setPaymentSuccess] = useState(null);
 
   const handleSubmit = async (event) => {
-    
-    // event.preventDefault();
+    console.log('payment Clicked');
+    event.preventDefault();
 
     if (!stripe || !elements) {
       
@@ -44,11 +44,9 @@ const PaymentCard = ({handleBooking}) => {
         <div>
             <form className="border p-4 rounded bg-light mt-3" onSubmit={handleSubmit}>
                 <CardElement />
-                <Link>
                   <button className="custom_btn mt-3" type="submit" disabled={!stripe}>
                       Pay
                   </button>
-                  </Link>
             </form>
             {paymentError && <p style={{color: 'red'}}>{paymentError}</p>}
             {paymentSuccess && <p style={{color: 'green'}}>Your payment was successful.</p>}

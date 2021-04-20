@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import './Review.css';
-import ReviewImg from '../../../photos/review.jpg';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faQuoteLeft } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,7 +22,8 @@ const Review = () => {
             
                 <div className='px-4 text-center'>
                     <div>
-                        <h1 className='my-5'>Clients Quote</h1>
+                        <h6>testimonials</h6>
+                        <h1 className='mb-5'>Clients Quote</h1>
                         <hr/>
                         <p className='w-50 mx-auto'>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Laudantium totam deleniti blanditiis odio. Ad, temporibus? Lorem ipsum dolor sit amet.</p>
                     <div className='my-5'>

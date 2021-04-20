@@ -1,15 +1,13 @@
 import React, { useContext } from 'react';
 import { useForm } from 'react-hook-form';
-import firebase from "firebase/app";
 import "firebase/auth";
 import './Login.css';
 import { useHistory, useLocation } from 'react-router';
 import GoogleIcon from '../../photos/google.png';
-import firebaseConfig from './firebase.config';
 import { UserContext } from '../../App';
 import Logo from '../../photos/sewing_logo2.png';
 import Navbar from '../Home/Navbar/Navbar';
-import { initializeLoginFramework, handleGoogleSignIn, handleSignOut, handleFbSignIn, createUserWithEmailAndPassword, signInWithEmailAndPassword } from './LoginManager';
+import { initializeLoginFramework, handleGoogleSignIn, handleSignOut} from './LoginManager';
 
 
 const Login = () => {

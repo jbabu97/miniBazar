@@ -8,6 +8,7 @@ import featureImg5 from '../../../photos/work_5.jpg';
 import featureImg6 from '../../../photos/work_6.jpg';
 import featureImg7 from '../../../photos/work_7.jpg';
 import featureImg8 from '../../../photos/work_8.jpg';
+import { Link } from 'react-router-dom';
 
 const workData = [
     {
@@ -40,6 +41,7 @@ const FeatureWork = () => {
     return (
         <section className='mt-5'>
             <div className='text-center'>
+                <h6>Gallery</h6>
                 <h1 className='mb-5'>Our Works</h1>
                 <hr/>
                 <p className='w-50 mx-auto my-4'>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nostrum consequuntur qui dolore atque, quam reprehenderit magni enim!</p>
@@ -49,7 +51,12 @@ const FeatureWork = () => {
                     workData.map(work => (
                         <div className="gallery col-md-3 p-0">
                             <img className='img-fluid' src={work.featureImg} alt=''/>
+
+                            <div className='booking_btn'>
+                                <Link to='/'><button className='custom_btn animate__animated animate__fadeInDown'>See More</button></Link>
+                            </div>  
                         </div>
+                        
                     ))
                 }
             </div>

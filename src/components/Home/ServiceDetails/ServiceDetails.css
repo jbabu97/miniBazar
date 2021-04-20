@@ -4,9 +4,6 @@
     transition: .3s;
     border-radius: 10px;
 }
-.service_details:hover {
-    /* background-color: rgba(0, 0, 0, .4); */
-}
 .service_details:hover .booking_btn {
     display: block;
 }

@@ -3,11 +3,16 @@ import { UserContext } from '../../../App';
 import BookList from '../BookingList/BookList';
 import Sidebar from '../Sidebar/Sidebar';
 import './Dashboard.css';
+import { BeatLoader } from 'react-spinners';
 
 const Dashboard = () => {
     const [bookingByCustomer, setBookingByCustomer] = useState([]);
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     console.log(loggedInUser.email);
+
+    
+    const [spinner, setSpinner] = useState(false);
+
     useEffect(() => {
         fetch('http://localhost:4747/bookingByCustomer', {
             method: 'POST',
@@ -19,6 +24,7 @@ const Dashboard = () => {
             console.log(data);
             setBookingByCustomer(data);
         })
+        setSpinner(true)
     }, []);
 
 
@@ -32,10 +38,21 @@ const Dashboard = () => {
                 <div className="col-md-9 dash_content">
                     <h1 className='ml-5 my-5'>Booking List</h1>
                     <h6 className='user_name'>{loggedInUser.name}</h6>
+                    <div className="spinner">
+                        <BeatLoader size={30} color='#be2edd' loading/>
+                    </div>
                     {
-                        bookingByCustomer.length ? 
-                        <BookList bookingByCustomer={bookingByCustomer}></BookList> :
-                        <h4 className='text-center text-warning my-5'>You have no bookings</h4>
+                        spinner ?
+                        <div>
+                            {
+                                bookingByCustomer.length ? 
+                                <BookList bookingByCustomer={bookingByCustomer}></BookList> :
+                                <h4 className='text-center text-warning my-5'>You have no bookings</h4>
+                            }
+                        </div> :
+                        <div className="spinner">
+                            <BeatLoader size={30} color='#be2edd' loading/>
+                        </div>
                     }
                 </div>
             </div>

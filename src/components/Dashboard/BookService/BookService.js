@@ -15,11 +15,14 @@ const BookService = () => {
     
 
     const handleBooking = (paymentId) => {
+        
         const newBooking = {
+            ...loggedInUser,
             bookingService: bookService, 
             paymentId,
             orderTime: new Date()
         };
+        console.log(newBooking);
 
         fetch('http://localhost:4747/addBooking', {
             method: 'POST',
@@ -30,12 +33,14 @@ const BookService = () => {
         .then(success => {
             if (success) {
                 setBookService(success);
-                alert('Thanks for booking service.')
+                console.log(success);
+                alert('Thanks for booking service.');
                 
             }
         })
     };
 
+    console.log('clicked for booking');
 
     useEffect(() => {
         fetch(`http://localhost:4747/serviceDetails/${bookingId}`)
