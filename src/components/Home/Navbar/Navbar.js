@@ -22,8 +22,8 @@ const Navbar = () => {
 }
 
   return (
-    <nav class="navbar navbar-expand-lg navbar-dark">
-      <div class="container-fluid">
+    <nav className="navbar navbar-expand-lg navbar-dark">
+      <div className="container-fluid">
         <Link className="nav-link mr-4 active" aria-current="page" to="/home">
           <img src={Logo} alt=""/>
         </Link>
@@ -37,7 +37,7 @@ const Navbar = () => {
             </Link>
         }
         <button
-          class="navbar-toggler"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarSupportedContent"

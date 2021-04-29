@@ -7,6 +7,7 @@ const AddService = () => {
     const [loggedInUser, setLoggedInUser] = useContext(UserContext);
     const [addService, setAddService] = useState({});
     const [file, setFile] = useState(null);
+    console.log(addService);
 
     const handleBlur = (e) => {
         const newService = {...addService};
@@ -24,14 +25,17 @@ const AddService = () => {
         formData.append('file', file);
         formData.append('name', addService.name);
         formData.append('serviceCharge', addService.serviceCharge);
+        console.log(formData);
       
-        fetch(`https://whispering-bayou-36600.herokuapp.com/addService`, {
+        fetch(`http://localhost:4747/addService`, {
           method: 'POST',
           body: formData
         })
         .then(res => res.json())
         .then(data => {
           setAddService(data)
+          console.log(data);
+          alert('Service added')
         })
         .catch(error => {
             const errorMessage = error.message;
@@ -56,7 +60,6 @@ const AddService = () => {
                         <div class="form-group">
                             <label for="serviceCharge">Service Charge</label>
                             <input onBlur={handleBlur} type="text" class="form-control" id="serviceCharge" name="serviceCharge" placeholder="Service Charge"/>
-                            <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small>
                         </div>
                         <div class="form-group">
                             <label for="file">Upload Photo</label>
