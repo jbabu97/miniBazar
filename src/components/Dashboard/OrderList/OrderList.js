@@ -1,5 +1,4 @@
 import React, { useContext, useEffect, useState } from "react";
-import { Link } from "react-router-dom";
 import { UserContext } from "../../../App";
 import Sidebar from "../Sidebar/Sidebar";
 
@@ -22,11 +21,10 @@ const OrderBooking = () => {
 
   const handleChange = (id) => {
     console.log(id);
-    // console.log(e.target.name, e.target.value);
     const statusData = document.getElementById(`status-${id}`).value;
     console.log(statusData);
 
-    fetch(`http://localhost:4747/statusUpdate/${id}`, {
+    fetch(`https://whispering-bayou-36600.herokuapp.com/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
@@ -73,7 +71,7 @@ const OrderBooking = () => {
                         <td>
                         <select
                             className="custom_btn"
-                            value={booking.status?.status}
+                            value={booking.status}
                             onChange={() => handleChange(booking._id)}
                             name="status"
                             id={`status-${booking._id}`}
@@ -82,11 +80,6 @@ const OrderBooking = () => {
                             <option value="On Going">On Going</option>
                             <option value="Done">Done</option>
                         </select>
-                        <Link>
-                            <button className="btn">
-                            {booking.status?.status}
-                            </button>
-                        </Link>
                         </td>
                     </tr>
                 ))

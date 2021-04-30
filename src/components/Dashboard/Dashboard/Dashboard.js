@@ -24,7 +24,7 @@ const Dashboard = () => {
         setSpinner(true)
     }, []);
 
-
+    console.log(bookingByCustomer)
 
     return (
         <section className='dashboard'>

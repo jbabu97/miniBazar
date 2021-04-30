@@ -6,7 +6,7 @@ const BookList = ({ bookingByCustomer }) => {
     <section>
       <div>
         <div className="row ml-5">
-          {bookingByCustomer.map((booking) => (
+          {bookingByCustomer.map(booking => (
             <div key={booking._id} className="col-md-4">
               <div className="book_list mb-3">
                 <div className="d-flex">
@@ -15,9 +15,9 @@ const BookList = ({ bookingByCustomer }) => {
                       src={`data:image/png;base64,${booking.newBooking?.bookingService?.image?.img}`}
                       alt=""
                     />
-                    <div className="btn btn status_btn">
-                      {booking.status?.status}
-                    </div>
+                    <button className="status_btn">
+                      {booking.status}
+                    </button>
                   </div>
                 </div>
                 <div>

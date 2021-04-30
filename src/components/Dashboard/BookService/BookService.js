@@ -18,14 +18,13 @@ const BookService = () => {
             ...loggedInUser,
             bookingService: bookService, 
             paymentId,
-            status: 'Pending',
             orderTime: new Date()
         };
 
         fetch('https://whispering-bayou-36600.herokuapp.com/addBooking', {
             method: 'POST',
             headers: {'Content-Type' : 'application/json'},
-            body: JSON.stringify({newBooking})  
+            body: JSON.stringify({newBooking, status: 'Pending'})  
         })
         .then(res => res.json())
         .then(success => {

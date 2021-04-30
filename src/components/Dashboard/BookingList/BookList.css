@@ -12,4 +12,7 @@
 .status_btn {
     position: absolute;
     right: 10px;
+    color: #c9af7f;
+    background-color: transparent;
+    border-radius: 5px;
 }

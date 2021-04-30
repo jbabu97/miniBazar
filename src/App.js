@@ -16,7 +16,6 @@ import OrderList from "./components/Dashboard/OrderList/OrderList";
 import Home from "./components/Home/Home/Home";
 import Login from "./components/Login/Login";
 import PrivateRoute from "./components/Login/PrivateRoute";
-import StatusUpdate from "./components/Dashboard/StatusUpdate/StatusUpdate";
 
 export const UserContext = createContext();
 
@@ -62,9 +61,6 @@ function App() {
             </Route>
             <PrivateRoute path='/bookService/:bookingId'>
               <BookService></BookService>
-            </PrivateRoute>
-            <PrivateRoute path='/update/:bookingId'>
-              <StatusUpdate></StatusUpdate>
             </PrivateRoute>
             <Route exact path='/'>
               <Home></Home>
