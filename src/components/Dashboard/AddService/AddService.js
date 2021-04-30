@@ -27,7 +27,7 @@ const AddService = () => {
         formData.append('serviceCharge', addService.serviceCharge);
         console.log(formData);
       
-        fetch(`http://localhost:4747/addService`, {
+        fetch(`https://whispering-bayou-36600.herokuapp.com/addService`, {
           method: 'POST',
           body: formData
         })
