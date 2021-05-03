@@ -4,17 +4,17 @@
 # Project name: mama-sewing
 
 ## This site has moved here: 
-[https://mama-sewing.web.app/]
+[https://minibazar-fa2aa.web.app/]
 
 
 
 ## Key Features
 
-### This is a Tailoring service website
-### User can login with google account 
+### This is a grocery service website
+### It's a MERN stack project
+### User can login with google account by firebase authentication system
 ### There are different dashboard for users and admin
-### User can book any service using payment method
-### Integrated Private Route system
+### Integrated Private Route system for controll unwanted access into booking page
 ### Use MongoDB as a Database
 
 ## Uses Framework/libraries
@@ -26,7 +26,6 @@
 ### axios
 ### bootstrap
 ### font-awesome
-### stripe
 
 # complete-website-client-jbabu97
 
